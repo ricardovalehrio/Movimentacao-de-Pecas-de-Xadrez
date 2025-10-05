@@ -1,9 +1,9 @@
 #include <stdio.h>
 
 int main() {
-    // NÍVEL NOVATO 🏅
+    // NIVEL NOVATO 🏅
     // Variáveis para controle das estruturas de repetição
-    int i;                    // Contador para loop for (Torre)
+    int i;              // Contador para loop for (Torre)
     int contador_bispo = 0;   // Contador para loop while (Bispo)
     int contador_rainha = 0;  // Contador para loop do-while (Rainha)
     
@@ -26,16 +26,14 @@ int main() {
     
     // ============================================
     // BISPO: Movimento diagonal (5 casas)
-    // Para cada casa: Cima, Direita, Baixo, Esquerda
+    // Cima e Direita
     // Utilizando estrutura de repetição WHILE
     // ============================================
-    printf("Bispo movendo na diagonal:\n");
+    printf("Bispo movendo na diagonal (cima e direita):\n");
     
     while (contador_bispo < CASAS_BISPO) {
         printf("Cima\n");
         printf("Direita\n");
-        printf("Baixo\n");
-        printf("Esquerda\n");
         contador_bispo++;
     }
     
@@ -56,4 +54,5 @@ int main() {
     
     return 0;
 }
+
 
