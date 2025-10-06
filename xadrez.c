@@ -1,50 +1,88 @@
 #include <stdio.h>
-// 🏅 Nível Aventureiro
-int main() {
-    // TORRE: Movimento horizontal e vertical (5 casas), usando FOR
-    printf("Torre movendo em linha reta:\n");
-    for (int i = 0; i < 5; i++) {
+
+//🥇 Nível Mestre
+
+// Função recursiva para movimentação da torre (horizontal: direita)
+void moverTorreDireita(int casasRestantes) {
+    if (casasRestantes > 0) {
         printf("Direita\n");
-        printf("Esquerda\n");
-        printf("Cima\n");
-        printf("Baixo\n");
+        moverTorreDireita(casasRestantes - 1);
     }
-    printf("\n");
+}
 
-    // BISPO: Movimento diagonal (5 casas), usando WHILE
-    printf("Bispo movendo na diagonal:\n");
-    int contador_bispo = 0;
-    while (contador_bispo < 5) {
+// Função recursiva para movimentação do bispo (diagonal: cima-direita)
+void moverBispoDiagonal(int casasRestantes) {
+    if (casasRestantes > 0) {
         printf("Cima\n");
         printf("Direita\n");
-        printf("Baixo\n");
-        printf("Esquerda\n");
-        contador_bispo++;
+        moverBispoDiagonal(casasRestantes - 1);
     }
-    printf("\n");
+}
 
-    // RAINHA: Movimento todas as direções (8 casas), usando DO-WHILE
-    printf("Rainha movendo em todas as direcoes:\n");
-    int contador_rainha = 0;
-    do {
+// Função recursiva para movimentação da rainha (vertical: cima)
+void moverRainhaCima(int casasRestantes) {
+    if (casasRestantes > 0) {
         printf("Cima\n");
-        printf("Baixo\n");
-        printf("Direita\n");
-        printf("Esquerda\n");
-        contador_rainha++;
-    } while (contador_rainha < 8);
-    printf("\n");
+        moverRainhaCima(casasRestantes - 1);
+    }
+}
 
-    // CAVALO: Movimento em 'L' (duas casas para cima e uma para direita), usando WHILE e FOR
-    printf("Cavalo movendo em L (2 casas para cima e 1 para direita):\n");
-    int movimentoCompleto = 1;
-    while (movimentoCompleto--) {
-        for (int i = 0; i < 2; i++) {
+// Bispo com loops aninhados: externo vertical, interno horizontal
+void moverBispoLoops(int verticais, int horizontais) {
+    for (int v = 0; v < verticais; v++) {
+        for (int h = 0; h < horizontais; h++) {
             printf("Cima\n");
+            printf("Direita\n");
         }
-        printf("Direita\n");
     }
+}
+
+// Cavalo com loops complexos, usando continue/break e múltiplas variáveis
+void moverCavaloL() {
+    int passosVerticais = 2;
+    int passosHorizontais = 1;
+
+    for (int v = 0, realizadoV = 0; v < 3; v++) {
+        // Apenas permitir dois passos verticais
+        if (realizadoV == passosVerticais) break;
+        printf("Cima\n");
+        realizadoV++;
+        // Se já fez os passos verticais, salta para o fim do laço para o passo horizontal
+        if (realizadoV == passosVerticais) {
+            for (int h = 0; h < passosHorizontais; h++) {
+                printf("Direita\n");
+            }
+            break;
+        }
+    }
+}
+
+int main() {
+    // Torre (recursiva)
+    printf("Torre movendo para a direita (recursividade):\n");
+    moverTorreDireita(5);
     printf("\n");
-    
+
+    // Bispo (recursiva)
+    printf("Bispo movendo na diagonal (recursividade):\n");
+    moverBispoDiagonal(5);
+    printf("\n");
+
+    // Rainha (recursiva)
+    printf("Rainha movendo para cima (recursividade):\n");
+    moverRainhaCima(8);
+    printf("\n");
+
+    // Bispo (loops aninhados)
+    printf("Bispo movendo na diagonal (loops aninhados):\n");
+    moverBispoLoops(2, 3); // Exemplo: 2 verticais x 3 horizontais
+    printf("\n");
+
+    // Cavalo (loops complexos)
+    printf("Cavalo movendo em L (loops complexos):\n");
+    moverCavaloL();
+    printf("\n");
+
     return 0;
 }
+
